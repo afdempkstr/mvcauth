@@ -1,7 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 
 namespace MvcAuth.Models
 {
@@ -11,20 +9,43 @@ namespace MvcAuth.Models
 
         public UserManager()
         {
-            // add users: bill / gates / admin,owner
-            // steve / ballmer / developers
-            // satya / nadella / ceo,admin
-            // share / point / developers
+            _users.Add(new User()
+            {
+                Username = "bill",
+                Password = "gates",
+                Roles = new[] {"admin", "owner"}
+            });
+
+            _users.Add(new User()
+            {
+                Username = "steve",
+                Password = "ballmer",
+                Roles = new[] { "developers" }
+            });
+
+            _users.Add(new User()
+            {
+                Username = "satya",
+                Password = "nadella",
+                Roles = new[] { "ceo", "admin" }
+            });
+
+            _users.Add(new User()
+            {
+                Username = "share",
+                Password = "point",
+                Roles = new[] { "developers" }
+            });
         }
 
         public User Login(string username, string password)
         {
-            throw new NotImplementedException();
+            return _users.FirstOrDefault(u => u.Username == username && u.Password == password);
         }
 
         public bool UserExists(string username)
         {
-            return false;
+            return _users.Any(u => u.Username == username);
         }
     }
 }
