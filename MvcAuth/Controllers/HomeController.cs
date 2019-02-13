@@ -15,6 +15,8 @@ namespace MvcAuth.Controllers
 
         public ActionResult About()
         {
+            ViewBag.SessionField = Session["field"] ?? "No session field is set";
+
             ViewBag.Message = "Your application description page.";
 
             return View();
@@ -23,7 +25,7 @@ namespace MvcAuth.Controllers
         public ActionResult Contact()
         {
             ViewBag.Message = "Your contact page.";
-
+            Session["field"] = $"Test session field for session {Session.SessionID}";
             return View();
         }
     }
