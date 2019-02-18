@@ -9,25 +9,20 @@ namespace MvcAuth.Security
 {
     public class ApplicationPrincipal : IPrincipal
     {
+        private User _user;
+
         public bool IsInRole(string role)
         {
-            var httpContext = HttpContext.Current;
-            if (httpContext == null)
-            {
-                return false;
-            }
-
-            if (httpContext.Session != null)
-            {
-                if (httpContext.Session["user"] is User user)
-                {
-                    //TODO: check if the user has the requested role
-                }
-            }
-
-            return false;
+            var roles = role.Split(new [] {','}, StringSplitOptions.RemoveEmptyEntries);
+            return roles.Any(r => _user.Roles.Contains(r));
         }
 
         public IIdentity Identity { get; }
+
+        public ApplicationPrincipal(User user)
+        {
+            _user = user;
+            Identity = new GenericIdentity(_user.Username);
+        }
     }
 }
