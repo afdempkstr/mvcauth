@@ -129,6 +129,7 @@
     <Compile Include="Models\User.cs" />
     <Compile Include="Models\UserManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Security\AppAuthorizeAttribute.cs" />
     <Compile Include="Security\ApplicationPrincipal.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -208,6 +209,7 @@
     <Content Include="Views\Login\Index.cshtml" />
     <Content Include="Views\Login\Success.cshtml" />
     <Content Include="Views\Secure\Index.cshtml" />
+    <Content Include="Views\Login\AccessDenied.cshtml" />
     <Content Include="Views\Secure\DevelopersOnly.cshtml" />
   </ItemGroup>
   <ItemGroup>

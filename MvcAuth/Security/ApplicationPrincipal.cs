@@ -11,18 +11,18 @@ namespace MvcAuth.Security
     {
         private User _user;
 
-        public ApplicationPrincipal(User user)
-        {
-            _user = user;
-            Identity = new GenericIdentity(user.Username);
-        }
-
         public bool IsInRole(string role)
         {
-            var roles = role.Split(new[] {','}, StringSplitOptions.RemoveEmptyEntries);
+            var roles = role.Split(new [] {','}, StringSplitOptions.RemoveEmptyEntries);
             return roles.Any(r => _user.Roles.Contains(r));
         }
 
         public IIdentity Identity { get; }
+
+        public ApplicationPrincipal(User user)
+        {
+            _user = user;
+            Identity = new GenericIdentity(_user.Username);
+        }
     }
 }
