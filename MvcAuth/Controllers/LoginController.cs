@@ -16,7 +16,7 @@ namespace MvcAuth.Controllers
         }
 
         [HttpPost]
-        public ActionResult Login(User user)
+        public ActionResult Login([Bind(Include = "Username,Password")]User user)
         {
             UserManager manager = new UserManager();
             var loggedInUser = manager.Login(user.Username, user.Password);
