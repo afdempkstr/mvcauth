@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using Microsoft.AspNet.Identity;
 using MvcAuth.Models;
 
 namespace MvcAuth.Controllers
@@ -36,6 +37,7 @@ namespace MvcAuth.Controllers
         {
             Session.Clear();
             Session.Abandon();
+            HttpContext.GetOwinContext().Authentication.SignOut(DefaultAuthenticationTypes.ApplicationCookie);
             return RedirectToAction("Index", "Home");
         }
 
