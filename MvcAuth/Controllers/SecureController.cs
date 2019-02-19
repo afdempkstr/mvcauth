@@ -15,5 +15,11 @@ namespace MvcAuth.Controllers
         {
             return View();
         }
+
+        [AppAuthorize(Roles="developers")]
+        public ActionResult DevelopersOnly()
+        {
+            return View();
+        }
     }
 }
